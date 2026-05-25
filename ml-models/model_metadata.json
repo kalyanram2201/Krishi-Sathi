@@ -1,0 +1,59 @@
+{
+  "class_names": [
+    "Corn___Common_Rust",
+    "Corn___Gray_Leaf_Spot",
+    "Corn___Healthy",
+    "Corn___Northern_Leaf_Blight",
+    "Potato___Early_Blight",
+    "Potato___Healthy",
+    "Potato___Late_Blight",
+    "Rice___Brown_Spot",
+    "Rice___Healthy",
+    "Rice___Leaf_Blast",
+    "Rice___Neck_Blast",
+    "Wheat___Brown_Rust",
+    "Wheat___Healthy",
+    "Wheat___Yellow_Rust",
+    "Sugarcane___Red_Rot",
+    "Sugarcane___Healthy",
+    "Sugarcane___Bacterial_Blight"
+  ],
+  "class_distribution": {
+    "Corn___Common_Rust": 1192,
+    "Corn___Gray_Leaf_Spot": 513,
+    "Corn___Healthy": 1162,
+    "Corn___Northern_Leaf_Blight": 985,
+    "Potato___Early_Blight": 1000,
+    "Potato___Healthy": 152,
+    "Potato___Late_Blight": 1000,
+    "Rice___Brown_Spot": 613,
+    "Rice___Healthy": 1488,
+    "Rice___Leaf_Blast": 977,
+    "Rice___Neck_Blast": 1000,
+    "Wheat___Brown_Rust": 902,
+    "Wheat___Healthy": 1116,
+    "Wheat___Yellow_Rust": 924,
+    "Sugarcane___Red_Rot": 100,
+    "Sugarcane___Healthy": 100,
+    "Sugarcane___Bacterial_Blight": 100
+  },
+  "dataset_info": {
+    "total_classes": 17,
+    "total_images": 13324,
+    "sources": {
+      "Corn": "PlantVillage dataset",
+      "Potato": "PlantVillage dataset",
+      "Rice": [
+        "Dhan-Shomadhan Dataset",
+        "Rice Leafs dataset from Kaggle"
+      ],
+      "Wheat": "Wheat Disease Detection dataset from Kaggle",
+      "Sugarcane": "Sugarcane Disease Dataset from Kaggle"
+    }
+  },
+  "img_size": [
+    160,
+    160
+  ],
+  "num_classes": 17
+}
