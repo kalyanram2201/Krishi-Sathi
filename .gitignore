@@ -34,3 +34,6 @@ Thumbs.db
 
 # VS Code
 .vscode/
+
+best_crop_disease_model.keras
+crop_disease_savedmodel/
