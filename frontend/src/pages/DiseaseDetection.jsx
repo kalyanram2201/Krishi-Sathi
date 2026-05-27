@@ -42,7 +42,7 @@ const DiseaseDetection = () => {
       const token = user?.token;
 
       const response = await axios.post(
-        "http://localhost:5000/disease/predict",
+        "https://krishi-sathi-ml.onrender.com/predict-disease",
 
         formData,
 
