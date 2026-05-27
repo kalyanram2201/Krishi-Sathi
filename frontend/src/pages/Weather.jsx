@@ -12,7 +12,7 @@ import {
   MapPin,
 } from "lucide-react";
 
-const BACKEND_URL = "http://localhost:5000";
+const BACKEND_URL = import.meta.env.VITE_API_URL;
 
 const Weather = () => {
   const [city, setCity] = useState("Delhi");
@@ -26,9 +26,7 @@ const Weather = () => {
     try {
       setLoading(true);
 
-      const res = await axios.get(
-        `${BACKEND_URL}/weather/${city}`
-      );
+      const res = await axios.get(`${BACKEND_URL}/weather/${city}`);
 
       setWeather(res.data);
 
@@ -51,7 +49,7 @@ const Weather = () => {
       setLoading(true);
 
       const res = await axios.get(
-        `${BACKEND_URL}/weather/coords?lat=${lat}&lon=${lon}`
+        `${BACKEND_URL}/weather/coords?lat=${lat}&lon=${lon}`,
       );
 
       setWeather(res.data);
@@ -73,14 +71,11 @@ const Weather = () => {
   const handleLocationClick = () => {
     navigator.geolocation.getCurrentPosition(
       (pos) => {
-        fetchWeatherByCoords(
-          pos.coords.latitude,
-          pos.coords.longitude
-        );
+        fetchWeatherByCoords(pos.coords.latitude, pos.coords.longitude);
       },
       () => {
         setError("Location permission denied");
-      }
+      },
     );
   };
 
@@ -95,7 +90,6 @@ const Weather = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-green-50 py-8">
       <div className="max-w-6xl mx-auto px-4">
-
         <h1 className="text-3xl font-bold text-center mb-6">
           Real-Time Weather & Farm Alerts
         </h1>
@@ -103,7 +97,6 @@ const Weather = () => {
         {/* SEARCH */}
         <div className="max-w-md mx-auto mb-6 flex gap-2">
           <div className="relative flex-1">
-
             {/* 📍 CLICKABLE MAP ICON */}
             <MapPin
               onClick={handleLocationClick}
@@ -128,58 +121,64 @@ const Weather = () => {
           </button>
         </div>
 
-        {error && (
-          <div className="text-center text-red-600 mb-4">{error}</div>
-        )}
+        {error && <div className="text-center text-red-600 mb-4">{error}</div>}
 
         {/* WEATHER CARD */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-
           <motion.div className="lg:col-span-2 bg-white p-6 rounded-lg shadow">
             {loading ? (
               <div className="text-center">Loading real-time data...</div>
-            ) : weather && (
-              <>
-                <div className="flex justify-between mb-4">
-                  <div>
-                    <h2 className="text-2xl font-bold">{weather.city}</h2>
-                    <p className="capitalize text-gray-600">
-                      {weather.description}
-                    </p>
-                  </div>
-
-                  <div className="text-right">
-                    <div className="text-4xl font-bold text-orange-500">
-                      {weather.temperature}°C
+            ) : (
+              weather && (
+                <>
+                  <div className="flex justify-between mb-4">
+                    <div>
+                      <h2 className="text-2xl font-bold">{weather.city}</h2>
+                      <p className="capitalize text-gray-600">
+                        {weather.description}
+                      </p>
                     </div>
-                    {React.createElement(getIcon(weather.description), {
-                      className: "h-10 w-10 text-blue-500 ml-auto",
-                    })}
-                  </div>
-                </div>
 
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
-                  <div className="bg-blue-50 p-3 rounded">
-                    <Droplets className="mx-auto mb-1 text-blue-600" />
-                    {weather.humidity}%<br />Humidity
-                  </div>
-
-                  <div className="bg-green-50 p-3 rounded">
-                    <Wind className="mx-auto mb-1 text-green-600" />
-                    {weather.wind_speed} km/h<br />Wind
+                    <div className="text-right">
+                      <div className="text-4xl font-bold text-orange-500">
+                        {weather.temperature}°C
+                      </div>
+                      {React.createElement(getIcon(weather.description), {
+                        className: "h-10 w-10 text-blue-500 ml-auto",
+                      })}
+                    </div>
                   </div>
 
-                  <div className="bg-purple-50 p-3 rounded">
-                    <Eye className="mx-auto mb-1 text-purple-600" />
-                    {weather.visibility ?? "--"} km<br />Visibility
-                  </div>
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                    <div className="bg-blue-50 p-3 rounded">
+                      <Droplets className="mx-auto mb-1 text-blue-600" />
+                      {weather.humidity}%<br />
+                      Humidity
+                    </div>
 
-                  <div className="bg-orange-50 p-3 rounded">
-                    <Thermometer className="mx-auto mb-1 text-orange-600" />
-                    {weather.pressure} hPa<br />Pressure
+                    <div className="bg-green-50 p-3 rounded">
+                      <Wind className="mx-auto mb-1 text-green-600" />
+                      {weather.wind_speed} km/h
+                      <br />
+                      Wind
+                    </div>
+
+                    <div className="bg-purple-50 p-3 rounded">
+                      <Eye className="mx-auto mb-1 text-purple-600" />
+                      {weather.visibility ?? "--"} km
+                      <br />
+                      Visibility
+                    </div>
+
+                    <div className="bg-orange-50 p-3 rounded">
+                      <Thermometer className="mx-auto mb-1 text-orange-600" />
+                      {weather.pressure} hPa
+                      <br />
+                      Pressure
+                    </div>
                   </div>
-                </div>
-              </>
+                </>
+              )
             )}
           </motion.div>
 
@@ -228,7 +227,6 @@ const Weather = () => {
             )}
           </div>
         </div>
-
       </div>
     </div>
   );
