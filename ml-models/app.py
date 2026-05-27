@@ -18,10 +18,10 @@ CORS(app)
 
 
 # ── Paths ─────────────────────────────────────────────────────────────────────
-CROP_MODEL_PATH    = r"C:\Users\Medha\Desktop\MERN\Krishi-Sathi\ml-models\crop_model.pkl"
-DISEASE_MODEL_PATH = r"C:\Users\Medha\Desktop\MERN\Krishi-Sathi\ml-models\crop_best_model.pth"
-DISEASE_META_PATH  = r"C:\Users\Medha\Desktop\MERN\Krishi-Sathi\ml-models\model_metadata.json"
-
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+CROP_MODEL_PATH = os.path.join(BASE_DIR, "crop_model.pkl")
+DISEASE_MODEL_PATH = os.path.join(BASE_DIR, "crop_best_model.pth")
+DISEASE_META_PATH = os.path.join(BASE_DIR, "model_metadata.json")
 crop_model = joblib.load(CROP_MODEL_PATH)
 print("✅ Crop recommendation model loaded")
 
