@@ -40,7 +40,7 @@ const CropSuggestion = () => {
           const lon = position.coords.longitude;
 
           const response = await fetch(
-            `http://localhost:5000/weather/coords?lat=${lat}&lon=${lon}`,
+            `https://krishi-sathi-backend-h7hz.onrender.com/weather/coords?lat=${lat}&lon=${lon}`,
           );
 
           const data = await response.json();
@@ -162,20 +162,23 @@ const CropSuggestion = () => {
         return;
       }
 
-      const response = await fetch("http://127.0.0.1:5000/crop", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+      const response = await fetch(
+        "https://krishi-sathi-backend-h7hz.onrender.com/crop",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
 
-        body: JSON.stringify({
-          city: city,
-          Soil_Type: data.soilType,
-          Soil_pH: Number(data.ph),
-          Location_Region: city,
-          Previous_Crop: data.previousCrop || "None",
-        }),
-      });
+          body: JSON.stringify({
+            city: city,
+            Soil_Type: data.soilType,
+            Soil_pH: Number(data.ph),
+            Location_Region: city,
+            Previous_Crop: data.previousCrop || "None",
+          }),
+        },
+      );
 
       if (!response.ok) {
         throw new Error("Server error");
@@ -191,7 +194,7 @@ const CropSuggestion = () => {
 
           if (topCrop) {
             await axios.post(
-              "http://localhost:5000/predictions",
+              "https://krishi-sathi-backend-h7hz.onrender.com/predictions",
               {
                 crop: topCrop.name,
 
