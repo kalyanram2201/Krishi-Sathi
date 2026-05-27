@@ -24,7 +24,7 @@ const app = express();
 
 app.use(
   cors({
-    origin: ["http://localhost:5173", "https://krishi-sathi-phi.vercel.app"],
+    origin: ["http://localhost:5173", "https://krishi-sathi-phi.vercel.app", "https://krishi-sathi-5y39blvh1-kalyanram2201s-projects.vercel.app"],
     credentials: true,
   }),
 );
