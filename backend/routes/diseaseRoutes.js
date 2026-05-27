@@ -44,7 +44,7 @@ router.post(
       );
 
       const flaskResponse = await axios.post(
-        "http://127.0.0.1:5001/predict-disease",
+        `${process.env.ML_API_URL}/predict-disease`,
 
         formData,
 

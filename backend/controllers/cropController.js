@@ -16,7 +16,7 @@ export const getCropRecommendation = async (req, res) => {
 
     // 1️⃣ Get weather data
     const weatherRes = await axios.get(
-      `http://localhost:5000/weather/${requestCity}`
+      `${process.env.BACKEND_URL}/weather/${requestCity}`
     );
 
     const weather = weatherRes.data;
@@ -45,7 +45,8 @@ export const getCropRecommendation = async (req, res) => {
 
     // 5️⃣ Call ML API
     const mlRes = await axios.post(
-      "http://localhost:5001/predict",
+      `${process.env.ML_API_URL}/predict`,
+      
       mlInput
     );
 
