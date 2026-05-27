@@ -12,11 +12,9 @@ import path from "path";
 
 import { fileURLToPath } from "url";
 
-const __filename =
-  fileURLToPath(import.meta.url);
+const __filename = fileURLToPath(import.meta.url);
 
-const __dirname =
-  path.dirname(__filename);
+const __dirname = path.dirname(__filename);
 
 dotenv.config();
 
@@ -26,12 +24,11 @@ const app = express();
 
 app.use(
   cors({
-    origin: [
-      "http://localhost:5173",
-    ],
+    origin: ["http://localhost:5173", "https://krishi-sathi-phi.vercel.app"],
     credentials: true,
-  })
+  }),
 );
+
 app.use(express.json());
 
 app.use("/auth", authRoutes);
@@ -41,23 +38,22 @@ app.use("/predictions", predictionRoutes);
 app.use("/disease", diseaseRoutes);
 app.use("/users", userRoutes);
 app.use(
-
   "/uploads",
 
   express.static(
     path.join(
       __dirname,
 
-      "uploads"
-    )
-  )
+      "uploads",
+    ),
+  ),
 );
 // test route
 app.get("/", (req, res) => {
   res.send("Backend is running 🚀");
 });
 
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
