@@ -1,19 +1,13 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:5000/auth";
+const API_URL = `${import.meta.env.VITE_API_URL}/auth`;
 
 // Register User
 const register = async (userData) => {
-  const response = await axios.post(
-    `${API_URL}/register`,
-    userData
-  );
+  const response = await axios.post(`${API_URL}/register`, userData);
 
   if (response.data) {
-    localStorage.setItem(
-      "user",
-      JSON.stringify(response.data)
-    );
+    localStorage.setItem("user", JSON.stringify(response.data));
   }
 
   return response.data;
@@ -21,16 +15,10 @@ const register = async (userData) => {
 
 // Login User
 const login = async (userData) => {
-  const response = await axios.post(
-    `${API_URL}/login`,
-    userData
-  );
+  const response = await axios.post(`${API_URL}/login`, userData);
 
   if (response.data) {
-    localStorage.setItem(
-      "user",
-      JSON.stringify(response.data)
-    );
+    localStorage.setItem("user", JSON.stringify(response.data));
   }
 
   return response.data;

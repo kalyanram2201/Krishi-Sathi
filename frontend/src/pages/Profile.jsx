@@ -311,7 +311,7 @@ const Profile = () => {
                       previewImage
                         ? previewImage
                         : profile.profileImage
-                          ? `http://localhost:5000${profile.profileImage}`
+                          ? `${import.meta.env.VITE_API_URL}${profile.profileImage}`
                           : "https://api.dicebear.com/7.x/fun-emoji/svg?seed=farmer"
                     }
                     alt="avatar"
@@ -456,7 +456,7 @@ const Profile = () => {
                     previewImage
                       ? previewImage
                       : profile.profileImage
-                        ? `http://localhost:5000${profile.profileImage}`
+                        ? `${import.meta.env.VITE_API_URL}${profile.profileImage}`
                         : "https://api.dicebear.com/7.x/fun-emoji/svg?seed=farmer"
                   }
                   alt="avatar"
